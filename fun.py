@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #coding by ceyhun alyeşil(ceyhunalyesil@gmail.com)
-#published with gplv3
+
 import sys
 import random
 from pysqlite2 import dbapi2 as sqlite

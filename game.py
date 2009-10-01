@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #coding by ceyhun alyeşil(ceyhunalyesil@gmail.com)
-#published with gplv3
 
 from pysqlite2 import dbapi2 as sqlite
 from fun import *
@@ -9,7 +8,7 @@ from fun import *
 try:
   dosya = open("test.db", "r")
 except:
-  print "Karakter yaratım işlemi başlamak üzere lütfen hazırlanın gireceğiniz değerlerin toplamı 20 olmalı"
+  print "Soon character creation will start you stats must be total 20 points no more "
   connection = sqlite.connect('test.db')
   memoryConnection = sqlite.connect(':memory:')
   cursor = connection.cursor() 
