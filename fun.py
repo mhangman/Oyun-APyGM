@@ -43,6 +43,7 @@ def fight():
 		mlife = war[2]
 		mattack = war[4]
 		mdefance = war[3]
+		mexp = war[6]
 
 		pdamage = int(attack) - int(mdefance)
 
