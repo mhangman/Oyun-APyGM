@@ -11,12 +11,12 @@ def addMounster():
 	name = raw_input("Mounster's name: ")
 	hp = raw_input("Mounster's Hitpoint: ")
 	defance = raw_input("Mounster's Defance: ")
-	resist = raw_input("Mounster's Resist: ")
+	attack = raw_input("Mounster's Attack: ")
 	level = raw_input("Mounster's Level: ")
 	exp = raw_input("Mounster's Exp: ")
 
 
-	cursor.execute('INSERT INTO npc VALUES (null, ?, ?, ?, ?, ?, ?)', (name, hp, defance, resist, level, exp))
+	cursor.execute('INSERT INTO npc VALUES (null, ?, ?, ?, ?, ?, ?)', (name, hp, defance, attack, level, exp))
 	connection.commit()
 	print "mounster %s is added" % name
 	print "if you want add more just type A"

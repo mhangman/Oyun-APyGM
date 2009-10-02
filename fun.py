@@ -31,28 +31,33 @@ def fight():
 
 	if toplam == 20:
 		print "stats are ok"
-		canavarlar = {"kutupayisi":"50","demon":"30","bildircin":"20","solucan":"5"}
-		sans = random.choice(canavarlar.keys())
-		canavar = canavarlar[sans]
-		sal = 2
 		saglik = row[2] * 5
 		attack = row[4]
+
+		connection = sqlite.connect('npc.db')
+		memoryConnection = sqlite.connect(':memory:')
+		cursor = connection.cursor()
+		cursor.execute('SELECT * FROM npc ORDER BY RANDOM()')
+		war = cursor.fetchone()
+
+		mlife = war[2]
+		mattack = war[4]
 
 		print "first fight begins..."
 		if saglik == 0:
 			print "Gratz! You are dead before you start the game, zero hp!"
 		else:
 			while saglik > 0:
-				saglik = int(saglik) - int(sal)
+				saglik = int(saglik) - int(mattack)
 				print "your life is down to %s" % saglik
-				canavar = int(canavar) - int(attack)
-				print "mounster's life is %s" % canavar
-				if canavar == 0:
+				mlife = int(mlife) - int(attack)
+				print "mounster's life is %s" % mlife
+				if mlife == 0:
 					print "you win ohh yeahhh"
 					break
-				elif canavar<int(attack):
-					canavar = 0
-					print "canavarın canı %s'e indi" % canavar
+				elif mlife<int(attack):
+					mlife = 0
+					print "mounster's life is  %s" % mlife
 					print "you win ohh yeahhh"
 					break
 				elif saglik == 0:
@@ -60,7 +65,3 @@ def fight():
 					break
 				else:
 					continue
-
-	else:
-		print "stats total must be 20."
-	return run()
