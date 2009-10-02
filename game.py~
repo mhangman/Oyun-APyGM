@@ -20,7 +20,7 @@ except:
   intel = raw_input("How smart you are: ")
   power = raw_input("Str: ")
   charisma = raw_input("Charisma: ")
-  dex = raw_input("Dex: ")
+  dex = raw_input("Dexcd: ")
 
   cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (karakter, can, intel, power, charisma, dex))
   connection.commit()
