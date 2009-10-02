@@ -29,10 +29,10 @@ def fight():
 	row = cursor.fetchone()
 	toplam = row[2]+row[3]+row[4]+row[5]+row[6]
 
-	if toplam == 20:
+	if toplam == 30:
 		print "stats are ok"
 		saglik = row[2] * 5
-		attack = row[4]
+		attack = row[4] * 2
 
 		connection = sqlite.connect('npc.db')
 		memoryConnection = sqlite.connect(':memory:')
@@ -42,26 +42,32 @@ def fight():
 
 		mlife = war[2]
 		mattack = war[4]
+		mdefance = war[3]
 
-		print "first fight begins..."
-		if saglik == 0:
-			print "Gratz! You are dead before you start the game, zero hp!"
+		pdamage = int(attack) - int(mdefance)
+
+		if int(mdefance) > int(attack):
+			print "He is stronger than we thought... RUNNN!"
 		else:
-			while saglik > 0:
-				saglik = int(saglik) - int(mattack)
-				print "your life is down to %s" % saglik
-				mlife = int(mlife) - int(attack)
-				print "mounster's life is %s" % mlife
-				if mlife == 0:
-					print "you win ohh yeahhh"
-					break
-				elif mlife<int(attack):
-					mlife = 0
-					print "mounster's life is  %s" % mlife
-					print "you win ohh yeahhh"
-					break
-				elif saglik == 0:
-					print "so dead is only truth you have"
-					break
-				else:
-					continue
+			print "first fight begins..."
+			if saglik == 0:
+				print "Gratz! You are dead before you start the game, zero hp!"
+			else:
+				while saglik > 0:
+					saglik = int(saglik) - int(mattack)
+					print "your life is down to %s" % saglik
+					mlife = int(mlife) - int(pdamage)
+					print "mounster's life is %s" % mlife
+					if mlife == 0:
+						print "you win ohh yeahhh"
+						break
+					elif mlife<int(pdamage):
+						mlife = 0
+						print "mounster's life is  %s" % mlife
+						print "you win ohh yeahhh"
+						break
+					elif saglik == 0:
+						print "so dead is only truth you have"
+						break
+					else:
+						continue
