@@ -1,5 +1,7 @@
 #!usr/bin/env python
 # -*- coding: utf-8 -*-
+#APyGM coding by Ceyhun Alyeşil (ceyhunalyesil@gmail.com)
+
 import sys
 from mounster import *
 

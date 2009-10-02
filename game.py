@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#coding by ceyhun alyeşil(ceyhunalyesil@gmail.com)
+#APyGM coding by ceyhun alyeşil(ceyhunalyesil@gmail.com)
 
 from pysqlite2 import dbapi2 as sqlite
 from fun import *
