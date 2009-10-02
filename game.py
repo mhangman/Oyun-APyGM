@@ -8,7 +8,7 @@ from fun import *
 try:
   dosya = open("test.db", "r")
 except:
-  print "Soon character creation will start you stats must be total 20 points no more "
+  print "Soon character creation will start you stats must be total 30 points no more "
   connection = sqlite.connect('test.db')
   memoryConnection = sqlite.connect(':memory:')
   cursor = connection.cursor() 
