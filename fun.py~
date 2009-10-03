@@ -87,5 +87,4 @@ def gexp():
 
 	texp = expget[1] + mexp
 	cursor.execute('INSERT INTO gain VALUES (null, ?)',(texp))
-	cursor.commit()
 	print "Your exp is %s" %texp

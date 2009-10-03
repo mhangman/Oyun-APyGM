@@ -4,6 +4,7 @@
 
 from pysqlite2 import dbapi2 as sqlite
 from fun import *
+from grind import *
 
 try:
   dosya = open("test.db", "r")
