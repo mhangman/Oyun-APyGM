@@ -22,6 +22,7 @@ def run():
 
 
 def fight():
+	global mexp
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
@@ -61,14 +62,29 @@ def fight():
 					print "mounster's life is %s" % mlife
 					if mlife == 0:
 						print "you win ohh yeahhh"
+						gexp()
 						break
 					elif mlife<int(pdamage):
 						mlife = 0
 						print "mounster's life is  %s" % mlife
 						print "you win ohh yeahhh"
+						gexp()
 						break
 					elif saglik == 0:
-						print "so dead is only truth you have"
+						print "so death is only truth you have"
 						break
 					else:
 						continue
+
+def gexp():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor() 
+	
+	cursor.execute('SELECT * FROM gain')
+	expget = cursor.fetchone()
+	exp = expget[1]
+
+	texp = expget[1] + mexp
+	cursor.execute('INSERT INTO gain VALUES (null, ?)',(texp))
+	print "Your exp is %s" %texp

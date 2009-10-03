@@ -4,6 +4,7 @@
 
 from pysqlite2 import dbapi2 as sqlite
 from fun import *
+from grind import *
 
 try:
   dosya = open("test.db", "r")
@@ -13,7 +14,8 @@ except:
   memoryConnection = sqlite.connect(':memory:')
   cursor = connection.cursor() 
 
-  cursor.execute('CREATE TABLE karakterler (id INTEGER PRIMARY KEY, isim VARCHAR(30), can INTEGER, intel INTEGER, power INTEGER, charisma INTEGER, dex INTEGER)')
+  cursor.execute('CREATE TABLE karakterler (id INTEGER PRIMARY KEY, isim VARCHAR(30), can INTEGER, intel INTEGER, power INTEGER, charisma INTEGER, dex INTEGER)')  
+  cursor.execute('CREATE TABLE gain (id INTEGER PRIMARY KEY, exp INTEGER)')
 
   karakter = raw_input("Your name: ")
   can = raw_input("Your HP: ")
@@ -23,6 +25,8 @@ except:
   dex = raw_input("Dex: ")
 
   cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (karakter, can, intel, power, charisma, dex))
+  cursor.execute('INSERT INTO gain VALUES (null, 1)')
   connection.commit()
+
 
 run()
