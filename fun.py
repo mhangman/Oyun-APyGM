@@ -79,13 +79,17 @@ def fight():
 def gexp():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor() 
-	
+	cursor = connection.cursor()
+ 
 	cursor.execute('SELECT * FROM gain')
 	expget = cursor.fetchone()
 	exp = expget[1]
+ 
 
-	texp = expget[1] + mexp
-	cursor.execute('INSERT INTO gain VALUES (null, ?)',(texp))
-	cursor.commit()
-	print "Your exp is %s" %texp
+	cexp = exp + mexp
+	cursor.execute('UPDATE gain SET exp=?',(cexp,))
+	connection.commit()
+	cursor.execute('SELECT * FROM gain')
+	cxpget = cursor.fetchone()
+	pxp = cxpget[1]
+	print "Your exp is %s" %pxp
