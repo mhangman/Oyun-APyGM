@@ -1,6 +1,7 @@
 #!usr/bin/env python
 # -*- coding: utf-8 -*-
 #APyGM coding by Ceyhun Alyeşil (ceyhunalyesil@gmail.com)
+#license:gplv3
 
 import sys
 from mounster import *
