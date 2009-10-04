@@ -93,3 +93,12 @@ def gexp():
 	cxpget = cursor.fetchone()
 	pxp = cxpget[1]
 	print "Your exp is %s" %pxp
+
+def glvl():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+
+	cursor.execute('SELECT * FROM lvl')
+	lvlget = cursor.fetchone()
+	lvl = lvlget[1]
