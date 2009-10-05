@@ -6,6 +6,7 @@
 import sys
 from mounster import *
 
+#main gm screen
 print "You must create tables before to start adding mounster type D if you want so"
 print "To add Mounster to DB write M to quit this script just write Q"
 print "To view mounsters just type W"

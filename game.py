@@ -28,8 +28,10 @@ except:
   memoryConnection = sqlite.connect(':memory:')
   cursor = connection.cursor() 
 
+#start to create tables
   cursor.execute('CREATE TABLE karakterler (id INTEGER PRIMARY KEY, isim VARCHAR(30), can INTEGER, intel INTEGER, power INTEGER, charisma INTEGER, dex INTEGER)')  
   cursor.execute('CREATE TABLE gain (id INTEGER PRIMARY KEY, exp INTEGER)')
+  cursor.execute('CREATE TABLE lvl (id INTEGER PRIMARY KEY, number INTEGER)')
 
   karakter = raw_input("Your name: ")
   can = raw_input("Your HP: ")
@@ -38,9 +40,10 @@ except:
   charisma = raw_input("Charisma: ")
   dex = raw_input("Dex: ")
 
+#start to insert first values
   cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (karakter, can, intel, power, charisma, dex))
   cursor.execute('INSERT INTO gain VALUES (null, 1)')
+  cursor.execute('INSERT INTO lvl VALUES (null, 1)')
   connection.commit()
-
 
 run()

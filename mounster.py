@@ -6,6 +6,7 @@
 from pysqlite2 import dbapi2 as sqlite
 import sys
 
+#this for adding mounsters
 def addMounster():
 	connection = sqlite.connect('npc.db')
 	memoryConnection = sqlite.connect(':memory:')
@@ -29,6 +30,8 @@ def addMounster():
 		return addMounster()
 	else:
 		sys.exit()
+
+#this creates npc.db file.
 def npcDB():
 	connection = sqlite.connect('npc.db')
 	memoryConnection = sqlite.connect(':memory:')
@@ -46,6 +49,7 @@ def npcDB():
 	else:
 		sys.exit()
 
+#to view mounsters here we are.
 def viewMounster():
 	connection = sqlite.connect('npc.db')
 	memoryConnection = sqlite.connect(':memory:')

@@ -21,6 +21,7 @@ import sys
 import random
 from pysqlite2 import dbapi2 as sqlite
 
+#starter function. 
 def run():
 	while True:
 		print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
@@ -90,7 +91,7 @@ def fight():
 						break
 					else:
 						continue
-
+#exp getting
 def gexp():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
@@ -100,7 +101,6 @@ def gexp():
 	expget = cursor.fetchone()
 	exp = expget[1]
  
-
 	cexp = exp + mexp
 	cursor.execute('UPDATE gain SET exp=?',(cexp,))
 	connection.commit()
@@ -108,7 +108,7 @@ def gexp():
 	cxpget = cursor.fetchone()
 	pxp = cxpget[1]
 	print "Your exp is %s" %pxp
-
+#level getting
 def glvl():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
@@ -117,3 +117,5 @@ def glvl():
 	cursor.execute('SELECT * FROM lvl')
 	lvlget = cursor.fetchone()
 	lvl = lvlget[1]
+	llimits = {"400":"2","1000":"3","2000":"4"}
+	if pxp >= llimits.keys():
