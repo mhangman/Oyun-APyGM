@@ -88,6 +88,7 @@ def fight():
 						break
 					elif saglik == 0:
 						print "so death is only truth you have"
+						lexp()
 						break
 					else:
 						continue
@@ -119,3 +120,23 @@ def glvl():
 	lvl = lvlget[1]
 	llimits = {"400":"2","1000":"3","2000":"4"}
 	if pxp >= llimits.keys():
+#not finished dont use this function
+
+#lets loose exp when we die
+def lexp():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqliet.connect(':memory:')
+	cursor = connection.cursor()
+
+	cursor.execute.('SELECT * FROM gain')
+	exptake = cursor.fetchone()
+	expnow = exptake[1]
+#have to test this
+	explost = expnow * 2 / 100
+	newexp = expnow - explost
+	cursor.execute('UPDATE gain SET exp=?',(newexp,))
+	connection.commit()
+	cursor.execute('SELECT * FROM gain')
+	nexp = cursor.fetchone() 
+	yourexp = nexp[1]
+	print "Your exp is down to %s" %yourexp
