@@ -16,6 +16,7 @@ M = "M"
 Q = "Q"
 W = "W"
 D = "D"
+U = "U"
 if data == M:
 	addMounster()
 elif data == Q:
@@ -24,5 +25,6 @@ elif data == W:
 	viewMounster()
 elif data == D:
 	npcDB()
-	
+elif data == U:
+	updateMounster()
 

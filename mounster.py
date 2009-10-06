@@ -57,3 +57,28 @@ def viewMounster():
 	cursor.execute('SELECT * FROM npc')
       
 	print cursor.fetchall()
+
+#update mounster's details
+def updateMounster():
+	connection = sqlite.connect('npc.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+
+	print "To update a Mounster you have to write its name"
+	mname = raw_input("Mounster's name: ")
+	
+	cursor.execute('SELECT name FROM npc WHERE name LIKE ?', (mname,))
+	row = cursor.fetchone()
+	print "You selected", row[0]
+	print "Write new values of", row[0]
+	hp = raw_input("Mounster's Hitpoint: ")
+	defance = raw_input("Mounster's Defance: ")
+	attack = raw_input("Mounster's Attack: ")
+	level = raw_input("Mounster's Level: ")
+	exp = raw_input("Mounster's Exp: ")
+
+	cursor.execute('UPDATE npc SET hp=?, defance=?, resist=?, level=?, exp=? WHERE name=? ',(hp,defance,attack,level,exp,mname))
+	connection.commit()
+	print "Values updated"
+
+	
