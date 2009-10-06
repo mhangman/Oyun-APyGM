@@ -27,13 +27,13 @@ def run():
 		print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
 		print "but the truth is we never had. if you want to change something in the world choose"
 		print "your direction. To fight write S to quit just write Q ." 
-		komut = raw_input("Chicken or a warrior: ")
-		veri = str(komut)
+		order = raw_input("Chicken or a warrior: ")
+		runorder = str(order)
 		S = "S"
 		Q = "Q"
-		if veri == S:
+		if runorder == S:
 			fight()
-		elif veri == Q:
+		elif runorder == Q:
 			sys.exit()
 
 
@@ -135,7 +135,7 @@ def lexp():
 		yourexp = nexp[1]
 		print "Your exp is down to %s" %yourexp
 
-
+#gain lvl
 def checkLevel():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
@@ -160,4 +160,12 @@ def checkLevel():
 		lvl = lvlget[1]
 		print "Your level is:", lvl
 	else:
-		return run
+		return run()
+
+#when we level up we will get +5 stats function not finished dont use anywhere
+def addToStats():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+
+	cursor.execute('SELECT * FROM karakterler')

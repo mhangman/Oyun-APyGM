@@ -33,15 +33,15 @@ except:
   cursor.execute('CREATE TABLE gain (id INTEGER PRIMARY KEY, exp INTEGER)')
   cursor.execute('CREATE TABLE lvl (id INTEGER PRIMARY KEY, number INTEGER)')
 
-  karakter = raw_input("Your name: ")
-  can = raw_input("Your HP: ")
+  heroname = raw_input("Your name: ")
+  hp = raw_input("Your HP: ")
   intel = raw_input("How smart you are: ")
   power = raw_input("Str: ")
   charisma = raw_input("Charisma: ")
   dex = raw_input("Dex: ")
 
 #start to insert first values
-  cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (karakter, can, intel, power, charisma, dex))
+  cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (heroname, hp, intel, power, charisma, dex))
   cursor.execute('INSERT INTO gain VALUES (null, 1)')
   cursor.execute('INSERT INTO lvl VALUES (null, 1)')
   connection.commit()
