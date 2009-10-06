@@ -134,9 +134,14 @@ def lexp():
 #have to test this
 	explost = expnow * 2 / 100
 	newexp = expnow - explost
-	cursor.execute('UPDATE gain SET exp=?',(newexp,))
-	connection.commit()
-	cursor.execute('SELECT * FROM gain')
-	nexp = cursor.fetchone() 
-	yourexp = nexp[1]
-	print "Your exp is down to %s" %yourexp
+	if newexp < 0:
+		cursor.execute('UPDATE gain SET exp=0')
+		cursor.commit()
+		print "Your exp is down to zero, good job"
+	else:
+		cursor.execute('UPDATE gain SET exp=?',(newexp,))
+		connection.commit()
+		cursor.execute('SELECT * FROM gain')
+		nexp = cursor.fetchone() 
+		yourexp = nexp[1]
+		print "Your exp is down to %s" %yourexp
