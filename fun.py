@@ -109,26 +109,15 @@ def gexp():
 	cxpget = cursor.fetchone()
 	pxp = cxpget[1]
 	print "Your exp is %s" %pxp
-#level getting
-def glvl():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
-
-	cursor.execute('SELECT * FROM lvl')
-	lvlget = cursor.fetchone()
-	lvl = lvlget[1]
-	llimits = {"400":"2","1000":"3","2000":"4"}
-	if pxp >= llimits.keys():
-#not finished dont use this function
+	checkLevel()
 
 #lets loose exp when we die
 def lexp():
 	connection = sqlite.connect('test.db')
-	memoryConnection = sqliet.connect(':memory:')
+	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
 
-	cursor.execute.('SELECT * FROM gain')
+	cursor.execute('SELECT * FROM gain')
 	exptake = cursor.fetchone()
 	expnow = exptake[1]
 #have to test this
@@ -145,3 +134,30 @@ def lexp():
 		nexp = cursor.fetchone() 
 		yourexp = nexp[1]
 		print "Your exp is down to %s" %yourexp
+
+
+def checkLevel():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+
+	cursor.execute('SELECT * FROM lvl')
+	lvlget = cursor.fetchone()
+	lvl = lvlget[1]
+
+	elimit = lvl * 1000
+	cursor.execute('SELECT * FROM gain')
+	nexp = cursor.fetchone() 
+	yourexp = nexp[1]
+
+	if yourexp >= elimit:
+		lvl = lvl + 1
+		cursor.execute('UPDATE lvl SET number=?',(lvl,))
+		connection.commit()
+		print "Level up"
+		cursor.execute('SELECT * FROM lvl')
+		lvlget = cursor.fetchone()
+		lvl = lvlget[1]
+		print "Your level is:", lvl
+	else:
+		return run
