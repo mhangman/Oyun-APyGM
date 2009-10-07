@@ -46,7 +46,7 @@ def fight():
 	row = cursor.fetchone()
 	toplam = row[2]+row[3]+row[4]+row[5]+row[6]
 
-	if toplam == 30:
+	if toplam >= 30:
 		print "stats are ok"
 		saglik = row[2] * 5
 		attack = row[4] * 2
@@ -159,13 +159,23 @@ def checkLevel():
 		lvlget = cursor.fetchone()
 		lvl = lvlget[1]
 		print "Your level is:", lvl
+		addToStats()
 	else:
 		return run()
 
-#when we level up we will get +5 stats function not finished dont use anywhere
+#when we level up we will get +5 stats
 def addToStats():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
 
 	cursor.execute('SELECT * FROM karakterler')
+	row = cursor.fetchone()
+	hp = row[2] + 1
+	intel = row[3] + 1 
+	power = row[4] + 1 
+	charisma = row[5] + 1
+	dex = row[6] + 1
+
+	cursor.execute('UPDATE karakterler SET can=?, intel=?, power=?, charisma=?, dex=?',(hp, intel, power, charisma, dex))
+	connection.commit()

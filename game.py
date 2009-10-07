@@ -40,7 +40,7 @@ except:
   charisma = raw_input("Charisma: ")
   dex = raw_input("Dex: ")
 
-#start to insert first values
+  #start to insert first values
   cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (heroname, hp, intel, power, charisma, dex))
   cursor.execute('INSERT INTO gain VALUES (null, 1)')
   cursor.execute('INSERT INTO lvl VALUES (null, 1)')
