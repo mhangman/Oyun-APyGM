@@ -47,7 +47,7 @@ def fight():
 	toplam = row[2]+row[3]+row[4]+row[5]+row[6]
 
 	if toplam >= 30:
-		print "stats are ok"
+		print "stats are ok for now..."
 		saglik = row[2] * 5
 		attack = row[4] * 2
 
