@@ -21,11 +21,25 @@ class sProfile:
 		self.charisma = row[5]
 		self.dex = row[6]
 
+		cursor.execute('SELECT * FROM lvl')
+		lrow = cursor.fetchone()
+		self.lvl = lrow[1]
+
+		cursor.execute('SELECT * FROM gain')
+		erow = cursor.fetchone()
+		self.exp = erow[1]
+
 	def viewStats(self):
 		print "HP:", self.hp
 		print "INT:", self.intel
 		print "STR:", self.power
 		print "CHA:", self.charisma
 		print "DEX:", self.dex
+
+	def viewLevel(self):
+		print "LEVEL:", self.lvl
+
+	def viewExp(self):
+		print "EXPERIENCE:", self.exp
 
 sProfile = sProfile()

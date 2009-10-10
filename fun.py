@@ -27,7 +27,7 @@ def run():
 	while True:
 		print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
 		print "but the truth is we never had. if you want to change something in the world choose"
-		print "your direction. To fight write S to quit just write Q. To see your stats just type P" 
+		print "your direction. To fight write S to quit just write Q. To see your profile just type P" 
 		order = raw_input("Your order: ")
 		runorder = str(order)
 		S = "S"
@@ -39,6 +39,8 @@ def run():
 			sys.exit()
 		elif runorder == P:
 			sProfile.viewStats()
+			sProfile.viewLevel()
+			sProfile.viewExp()
 
 
 def fight():
