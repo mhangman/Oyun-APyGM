@@ -20,21 +20,25 @@
 import sys
 import random
 from pysqlite2 import dbapi2 as sqlite
+from profile import *
 
 #starter function. 
 def run():
 	while True:
 		print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
 		print "but the truth is we never had. if you want to change something in the world choose"
-		print "your direction. To fight write S to quit just write Q ." 
-		order = raw_input("Chicken or a warrior: ")
+		print "your direction. To fight write S to quit just write Q. To see your stats just type P" 
+		order = raw_input("Your order: ")
 		runorder = str(order)
 		S = "S"
 		Q = "Q"
+		P = "P"
 		if runorder == S:
 			fight()
 		elif runorder == Q:
 			sys.exit()
+		elif runorder == P:
+			sProfile.viewStats()
 
 
 def fight():
