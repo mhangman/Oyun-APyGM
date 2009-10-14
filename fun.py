@@ -41,10 +41,10 @@ def run():
 			sProfile.viewStats()
 			sProfile.viewLevel()
 			sProfile.viewExp()
-
+			sProfile.viewStash()
 
 def fight():
-	global mexp
+	global mexp, drop
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
@@ -63,10 +63,11 @@ def fight():
 		cursor.execute('SELECT * FROM npc ORDER BY RANDOM()')
 		war = cursor.fetchone()
 
-		mlife = war[2]
-		mattack = war[4]
-		mdefance = war[3]
-		mexp = war[6]
+		mlife = war[3]
+		mattack = war[5]
+		mdefance = war[4]
+		mexp = war[7]
+		drop = war[2]
 
 		pdamage = int(attack) - int(mdefance)
 
@@ -184,4 +185,17 @@ def addToStats():
 	dex = row[6] + 1
 
 	cursor.execute('UPDATE karakterler SET can=?, intel=?, power=?, charisma=?, dex=?',(hp, intel, power, charisma, dex))
+	connection.commit()
+
+#when we kill a mounster we will add its drop to our stash, this function not finished
+def addToStash():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+
+	cursor.execute('SELECT * FROM stash WHERE name=?' (drop,))
+	row = cursor.fetchone()
+	number = row[2]
+	number = number +1 
+	cursor.execute('UPDATE stash SET name=? number=?,' (drop,number))
 	connection.commit()

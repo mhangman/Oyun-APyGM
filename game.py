@@ -32,6 +32,7 @@ except:
   cursor.execute('CREATE TABLE karakterler (id INTEGER PRIMARY KEY, isim VARCHAR(30), can INTEGER, intel INTEGER, power INTEGER, charisma INTEGER, dex INTEGER)')  
   cursor.execute('CREATE TABLE gain (id INTEGER PRIMARY KEY, exp INTEGER)')
   cursor.execute('CREATE TABLE lvl (id INTEGER PRIMARY KEY, number INTEGER)')
+  cursor.execute('CREATE TABLE stash (id INTEGER PRIMARY KEY, name VARCHAR(30), number INTEGER)')
 
   heroname = raw_input("Your name: ")
   hp = raw_input("Your HP: ")

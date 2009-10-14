@@ -18,10 +18,10 @@ def addMounster():
 	attack = raw_input("Mounster's Attack: ")
 	level = raw_input("Mounster's Level: ")
 	exp = raw_input("Mounster's Exp: ")
-	drop = raw_input("Mounster's Drop: ")
+	mdrop = raw_input("Mounster's Drop: ")
 
 
-	cursor.execute('INSERT INTO npc VALUES (null, ?, ?, ?, ?, ?, ?, ?)', (name, hp, defance, attack, level, exp, drop))
+	cursor.execute('INSERT INTO npc VALUES (null, ?, ?, ?, ?, ?, ?, ?)', (name, mdrop, hp, defance, attack, level, exp))
 	connection.commit()
 	print "mounster %s is added" % name
 	print "if you want add more just type A"
@@ -38,7 +38,7 @@ def npcDB():
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor() 
 	
-	cursor.execute('CREATE TABLE npc (id INTEGER PRIMARY KEY, name VARCHAR(30), hp INTEGER, defance INTEGER, resist INTEGER, level INTEGER, exp INTEGER, drop VARCHAR(30))')
+	cursor.execute('CREATE TABLE npc (id INTEGER PRIMARY KEY, name VARCHAR(30), mdrop VARCHAR(30), hp INTEGER, defance INTEGER, attack INTEGER, level INTEGER, exp INTEGER)')
 
 	connection.commit()
 	print "Tables created"
@@ -77,9 +77,9 @@ def updateMounster():
 	attack = raw_input("Mounster's Attack: ")
 	level = raw_input("Mounster's Level: ")
 	exp = raw_input("Mounster's Exp: ")
-	drop = raw_input("Mounster's Drop: ")
+	mdrop = raw_input("Mounster's Drop: ")
 
-	cursor.execute('UPDATE npc SET hp=?, defance=?, resist=?, level=?, exp=?, drop=? WHERE name=? ',(hp,defance,attack,level,exp,drop,mname))
+	cursor.execute('UPDATE npc SET hp=?, defance=?, resist=?, level=?, exp=?, mdrop=? WHERE name=? ',(hp,defance,attack,level,exp,mdrop,mname))
 	connection.commit()
 	print "Values updated"
 

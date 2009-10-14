@@ -42,4 +42,16 @@ class sProfile:
 	def viewExp(self):
 		print "EXPERIENCE:", self.exp
 
+	def viewStash(self):
+		connection = sqlite.connect('test.db')
+		memoryConnection = sqlite.connect(':memory:')
+		cursor = connection.cursor()
+
+		cursor.execute('SELECT * from stash')
+		cursor.fetchall()
+		for srow in cursor:
+			print 'Item:', srow[1]
+			print 'Number:', srow[2]
+
 sProfile = sProfile()
+
