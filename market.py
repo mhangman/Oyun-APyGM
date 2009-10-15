@@ -31,11 +31,21 @@ def welcomeToMarket():
 	elif youwant == M:
 		viewMarket()
 	else:
-		sys.quit()
+		sys.exit()
 
 def viewItems():
+	connection = sqlite.connect('test.db')
+	memoryConnection = sqlite.connect(':memory:')
+	cursor = connection.cursor()
+	cursor.execute('SELECT * FROM stash')
+	row = cursor.fetchall()
+	for row in cursor:
+		print "Item:", row[1]
+		print "You have:", row[2]
 	return welcomeToMarket()
+
 def sellYourItems():
 	return welcomeToMarket()
 
 def viewMarket():
+	return welcomeTomarket()
