@@ -115,11 +115,12 @@ class depo:
 		memoryConnection = sqlite.connect(':memory:')
 		self.cursor = self.connection.cursor()
 	def addToStash(self):
-		self.cursor.execute('SELECT * FROM stash WHERE name LIKE ?' (arm.drop,))
+		drop = str(arm.drop)
+		self.cursor.execute('SELECT * FROM stash WHERE name LIKE ?', (drop,))
 		row = self.cursor.fetchone()
 		number = row[2]
 		number = number +1 
-		self.cursor.execute('UPDATE stash SET number=? WHERE name=?,' (number,arm.drop))
+		self.cursor.execute('UPDATE stash SET number=? WHERE name=?', (number,drop))
 		self.connection.commit()
 		print "You gained:", drop
 

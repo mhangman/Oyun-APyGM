@@ -57,7 +57,7 @@ class gm_master:
 		mname = raw_input("Mounster's name: ")
 	
 		self.cursor.execute('SELECT name FROM npc WHERE name LIKE ?', (mname,))
-		row = cursor.self.fetchone()
+		row = self.cursor.fetchone()
 		print "You selected", row[0]
 		print "Write new values of", row[0]
 		hp = raw_input("Mounster's Hitpoint: ")
