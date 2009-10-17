@@ -18,13 +18,13 @@ W = "W"
 D = "D"
 U = "U"
 if data == M:
-	addMounster()
+	gm_master.addMounster()
 elif data == Q:
 	sys.exit()
 elif data == W:
-	viewMounster()
+	gm_master.viewMounster()
 elif data == D:
-	npcDB()
+	gm_master.npcDB()
 elif data == U:
-	updateMounster()
+	gm_master.updateMounster()
 

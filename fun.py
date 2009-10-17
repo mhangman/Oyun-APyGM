@@ -87,12 +87,14 @@ def fight():
 					if mlife == 0:
 						print "you win ohh yeahhh"
 						gexp()
+						addToStash()
 						break
 					elif mlife<int(pdamage):
 						mlife = 0
 						print "mounster's life is  %s" % mlife
 						print "you win ohh yeahhh"
 						gexp()
+						addToStash()
 						break
 					elif saglik == 0:
 						print "so death is only truth you have"
@@ -118,7 +120,6 @@ def gexp():
 	pxp = cxpget[1]
 	print "Your exp is %s" %pxp
 	checkLevel()
-	addToStash()
 
 #lets loose exp when we die
 def lexp():
