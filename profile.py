@@ -47,11 +47,9 @@ class sProfile:
 		memoryConnection = sqlite.connect(':memory:')
 		cursor = connection.cursor()
 
-		cursor.execute('SELECT * from stash')
-		cursor.fetchall()
-		for srow in cursor:
-			print 'Item:', srow[1]
-			print 'Number:', srow[2]
+		cursor.execute('SELECT * FROM stash')
+		print cursor.fetchall()
+		
 
 sProfile = sProfile()
 

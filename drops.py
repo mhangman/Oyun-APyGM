@@ -6,15 +6,12 @@ def createDrops():
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
-	
-	cursor.execute('INSERT INTO stash VALUES (null, wblood, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, crowfeather, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, spoison, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, tfur, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, bfur, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, gdust, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, fang, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, vdust, 0)')
-	cursor.execute('INSERT INTO stash VALUES (null, soulgem, 0)')
 
+	print "Please write what drops you want"
+	drop = raw_input("Drop: ")
+	cursor.execute('INSERT INTO STASH VALUES (null, ?, 0)', (drop,))
 	connection.commit()
+	return createDrops()
+
+print "creating drop list"
+createDrops()

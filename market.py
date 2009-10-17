@@ -49,3 +49,5 @@ def sellYourItems():
 
 def viewMarket():
 	return welcomeTomarket()
+
+welcomeToMarket()

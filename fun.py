@@ -54,8 +54,8 @@ def fight():
 
 	if toplam >= 30:
 		print "stats are ok for now..."
-		saglik = row[2] * 5
-		attack = row[4] * 2
+		saglik = row[2] * 6
+		attack = row[4] * 3
 
 		connection = sqlite.connect('npc.db')
 		memoryConnection = sqlite.connect(':memory:')
@@ -67,7 +67,8 @@ def fight():
 		mattack = war[5]
 		mdefance = war[4]
 		mexp = war[7]
-		drop = war[2]
+		mdrop = war[2]
+		drop = str(mdrop)
 
 		pdamage = int(attack) - int(mdefance)
 
@@ -117,6 +118,7 @@ def gexp():
 	pxp = cxpget[1]
 	print "Your exp is %s" %pxp
 	checkLevel()
+	addToStash()
 
 #lets loose exp when we die
 def lexp():
@@ -193,9 +195,9 @@ def addToStash():
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
 
-	cursor.execute('SELECT * FROM stash WHERE name=?' (drop,))
+	cursor.execute('SELECT number FROM stash WHERE name=?' (drop,))
 	row = cursor.fetchone()
-	number = row[2]
-	number = number +1 
-	cursor.execute('UPDATE stash SET name=? number=?,' (drop,number))
+	number = row[1]
+	nnumber = number +1 
+	cursor.execute('UPDATE stash SET number=? WHERE name=?,' (nnumber,drop))
 	connection.commit()
