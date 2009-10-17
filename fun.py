@@ -44,7 +44,8 @@ def run():
 			sProfile.viewStash()
 
 def fight():
-	global mexp, drop
+	global mexp
+	global drop
 	connection = sqlite.connect('test.db')
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
@@ -67,8 +68,7 @@ def fight():
 		mattack = war[5]
 		mdefance = war[4]
 		mexp = war[7]
-		mdrop = war[2]
-		drop = str(mdrop)
+		drop = war[2]
 
 		pdamage = int(attack) - int(mdefance)
 
@@ -195,9 +195,9 @@ def addToStash():
 	memoryConnection = sqlite.connect(':memory:')
 	cursor = connection.cursor()
 
-	cursor.execute('SELECT number FROM stash WHERE name=?' (drop,))
+	cursor.execute('SELECT * FROM stash WHERE name=?' (drop))
 	row = cursor.fetchone()
-	number = row[1]
-	nnumber = number +1 
-	cursor.execute('UPDATE stash SET number=? WHERE name=?,' (nnumber,drop))
+	number = row[2]
+	number = number +1 
+	cursor.execute('UPDATE stash SET number=? WHERE name=?,' (number,drop))
 	connection.commit()

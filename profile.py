@@ -9,11 +9,11 @@ from pysqlite2 import dbapi2 as sqlite
 
 class sProfile:
 	def __init__(self):
-		connection = sqlite.connect('test.db')
-		memoryConnection = sqlite.connect(':memory:')
-		cursor = connection.cursor()
-		cursor.execute('SELECT * FROM karakterler')
-		row = cursor.fetchone()
+		self.connection = sqlite.connect('test.db')
+		self.memoryConnection = sqlite.connect(':memory:')
+		self.cursor = self.connection.cursor()
+		self.cursor.execute('SELECT * FROM karakterler')
+		row = self.cursor.fetchone()
 
 		self.hp = row[2]
 		self.intel = row[3]
@@ -21,12 +21,12 @@ class sProfile:
 		self.charisma = row[5]
 		self.dex = row[6]
 
-		cursor.execute('SELECT * FROM lvl')
-		lrow = cursor.fetchone()
+		self.cursor.execute('SELECT * FROM lvl')
+		lrow = self.cursor.fetchone()
 		self.lvl = lrow[1]
 
-		cursor.execute('SELECT * FROM gain')
-		erow = cursor.fetchone()
+		self.cursor.execute('SELECT * FROM gain')
+		erow = self.cursor.fetchone()
 		self.exp = erow[1]
 
 	def viewStats(self):
@@ -43,13 +43,10 @@ class sProfile:
 		print "EXPERIENCE:", self.exp
 
 	def viewStash(self):
-		connection = sqlite.connect('test.db')
-		memoryConnection = sqlite.connect(':memory:')
-		cursor = connection.cursor()
+		self.cursor.execute('SELECT * FROM stash')
+		print self.cursor.fetchall()
 
-		cursor.execute('SELECT * FROM stash')
-		print cursor.fetchall()
-		
+
 
 sProfile = sProfile()
 
