@@ -47,4 +47,4 @@ except:
   cursor.execute('INSERT INTO lvl VALUES (null, 1)')
   connection.commit()
 
-run()
+game_basic.run()

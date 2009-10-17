@@ -21,184 +21,106 @@ import sys
 import random
 from pysqlite2 import dbapi2 as sqlite
 from profile import *
+from exp import *
 
 #starter function. 
-def run():
-	while True:
-		print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
-		print "but the truth is we never had. if you want to change something in the world choose"
-		print "your direction. To fight write S to quit just write Q. To see your profile just type P" 
-		order = raw_input("Your order: ")
-		runorder = str(order)
-		S = "S"
-		Q = "Q"
-		P = "P"
-		if runorder == S:
-			fight()
-		elif runorder == Q:
-			sys.exit()
-		elif runorder == P:
-			sProfile.viewStats()
-			sProfile.viewLevel()
-			sProfile.viewExp()
-			sProfile.viewStash()
+class game_basic:
+	def run(self):
+		while True:
+			print "Hello young one. We are happy to see you here. I wish to say that some time we had peace."
+			print "but the truth is we never had. if you want to change something in the world choose"
+			print "your direction. To fight write S to quit just write Q. To see your profile just type P" 
+			order = raw_input("Your order: ")
+			runorder = str(order)
+			S = "S"
+			Q = "Q"
+			P = "P"
+			if runorder == S:
+				arm.fight()
+			elif runorder == Q:
+				sys.exit()
+			elif runorder == P:
+				sProfile.viewStats()
+				sProfile.viewLevel()
+				sProfile.viewExp()
+				sProfile.viewStash()
 
-def fight():
-	global mexp
-	global drop
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
-	cursor.execute('SELECT * FROM karakterler')
-	row = cursor.fetchone()
-	toplam = row[2]+row[3]+row[4]+row[5]+row[6]
+game_basic=game_basic()
 
-	if toplam >= 30:
-		print "stats are ok for now..."
-		saglik = row[2] * 6
-		attack = row[4] * 3
-
-		connection = sqlite.connect('npc.db')
+class arm:
+	def __init__(self):
+		self.connection = sqlite.connect('test.db')
 		memoryConnection = sqlite.connect(':memory:')
-		cursor = connection.cursor()
-		cursor.execute('SELECT * FROM npc ORDER BY RANDOM()')
-		war = cursor.fetchone()
+		self.cursor = self.connection.cursor()
 
-		mlife = war[3]
-		mattack = war[5]
-		mdefance = war[4]
-		mexp = war[7]
-		drop = war[2]
+	def fight(self):
+		self.cursor.execute('SELECT * FROM karakterler')
+		row = self.cursor.fetchone()
+		toplam = row[2]+row[3]+row[4]+row[5]+row[6]
 
-		pdamage = int(attack) - int(mdefance)
+		if toplam >= 30:
+			print "stats are ok for now..."
+			self.saglik = row[2] * 6
+			self.attack = row[4] * 3
 
-		if int(mdefance) > int(attack):
-			print "He is stronger than we thought... RUNNN!"
-		else:
-			print "first fight begins..."
-			if saglik == 0:
-				print "Gratz! You are dead before you start the game, zero hp!"
+			connection = sqlite.connect('npc.db')
+			memoryConnection = sqlite.connect(':memory:')
+			cursor = connection.cursor()
+			cursor.execute('SELECT * FROM npc ORDER BY RANDOM()')
+			war = cursor.fetchone()
+
+			self.mlife = war[3]
+			self.mattack = war[5]
+			self.mdefance = war[4]
+			self.mexp = war[7]
+			self.drop = war[2]
+
+			pdamage = int(self.attack) - int(self.mdefance)
+
+			if int(self.mdefance) > int(self.attack):
+				print "He is stronger than we thought... RUNNN!"
 			else:
-				while saglik > 0:
-					saglik = int(saglik) - int(mattack)
-					print "your life is down to %s" % saglik
-					mlife = int(mlife) - int(pdamage)
-					print "mounster's life is %s" % mlife
-					if mlife == 0:
-						print "you win ohh yeahhh"
-						gexp()
-						addToStash()
-						break
-					elif mlife<int(pdamage):
-						mlife = 0
-						print "mounster's life is  %s" % mlife
-						print "you win ohh yeahhh"
-						gexp()
-						addToStash()
-						break
-					elif saglik == 0:
-						print "so death is only truth you have"
-						lexp()
-						break
-					else:
-						continue
-#exp getting
-def gexp():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
- 
-	cursor.execute('SELECT * FROM gain')
-	expget = cursor.fetchone()
-	exp = expget[1]
- 
-	cexp = exp + mexp
-	cursor.execute('UPDATE gain SET exp=?',(cexp,))
-	connection.commit()
-	cursor.execute('SELECT * FROM gain')
-	cxpget = cursor.fetchone()
-	pxp = cxpget[1]
-	print "Your exp is %s" %pxp
-	checkLevel()
-
-#lets loose exp when we die
-def lexp():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
-
-	cursor.execute('SELECT * FROM gain')
-	exptake = cursor.fetchone()
-	expnow = exptake[1]
-#have to test this
-	explost = expnow * 2 / 100
-	newexp = expnow - explost
-	if newexp < 0:
-		cursor.execute('UPDATE gain SET exp=0')
-		cursor.commit()
-		print "Your exp is down to zero, good job"
-	else:
-		cursor.execute('UPDATE gain SET exp=?',(newexp,))
-		connection.commit()
-		cursor.execute('SELECT * FROM gain')
-		nexp = cursor.fetchone() 
-		yourexp = nexp[1]
-		print "Your exp is down to %s" %yourexp
-
-#gain lvl
-def checkLevel():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
-
-	cursor.execute('SELECT * FROM lvl')
-	lvlget = cursor.fetchone()
-	lvl = lvlget[1]
-
-	elimit = lvl * 1000
-	cursor.execute('SELECT * FROM gain')
-	nexp = cursor.fetchone() 
-	yourexp = nexp[1]
-
-	if yourexp >= elimit:
-		lvl = lvl + 1
-		cursor.execute('UPDATE lvl SET number=?',(lvl,))
-		connection.commit()
-		print "Level up"
-		cursor.execute('SELECT * FROM lvl')
-		lvlget = cursor.fetchone()
-		lvl = lvlget[1]
-		print "Your level is:", lvl
-		addToStats()
-	else:
-		return run()
-
-#when we level up we will get +5 stats
-def addToStats():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
-
-	cursor.execute('SELECT * FROM karakterler')
-	row = cursor.fetchone()
-	hp = row[2] + 1
-	intel = row[3] + 1 
-	power = row[4] + 1 
-	charisma = row[5] + 1
-	dex = row[6] + 1
-
-	cursor.execute('UPDATE karakterler SET can=?, intel=?, power=?, charisma=?, dex=?',(hp, intel, power, charisma, dex))
-	connection.commit()
-
+				print "first fight begins..."
+				if self.saglik == 0:
+					print "Gratz! You are dead before you start the game, zero hp!"
+				else:
+					while self.saglik > 0:
+						self.saglik = int(self.saglik) - int(self.mattack)
+						print "your life is down to %s" % self.saglik
+						self.mlife = int(self.mlife) - int(pdamage)
+						print "mounster's life is %s" % self.mlife
+						if self.mlife == 0:
+							print "you win ohh yeahhh"
+							expsystem.gexp()
+							depo.addToStash()
+							break
+						elif self.mlife<int(pdamage):
+							mlife = 0
+							print "mounster's life is  %s" % self.mlife
+							print "you win ohh yeahhh"
+							expsystem.gexp()
+							depo.addToStash()
+							break
+						elif self.saglik == 0:
+							print "so death is only truth you have"
+							expsystem.lexp()
+							break
+						else:
+							continue
+arm = arm()
 #when we kill a mounster we will add its drop to our stash, this function not finished
-def addToStash():
-	connection = sqlite.connect('test.db')
-	memoryConnection = sqlite.connect(':memory:')
-	cursor = connection.cursor()
+class depo:
+	def __init__(self):
+		self.connection = sqlite.connect('test.db')
+		memoryConnection = sqlite.connect(':memory:')
+		self.cursor = self.connection.cursor()
+	def addToStash(self):
+		self.cursor.execute('SELECT * FROM stash WHERE name LIKE ?' (arm.drop,))
+		row = self.cursor.fetchone()
+		number = row[2]
+		number = number +1 
+		self.cursor.execute('UPDATE stash SET number=? WHERE name=?,' (number,arm.drop))
+		self.connection.commit()
+		print "You gained:", drop
 
-	cursor.execute('SELECT * FROM stash WHERE name=?' (drop))
-	row = cursor.fetchone()
-	number = row[2]
-	number = number +1 
-	cursor.execute('UPDATE stash SET number=? WHERE name=?,' (number,drop))
-	connection.commit()
+depo = depo()
