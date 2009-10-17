@@ -12,6 +12,8 @@ class sProfile:
 		self.connection = sqlite.connect('test.db')
 		self.memoryConnection = sqlite.connect(':memory:')
 		self.cursor = self.connection.cursor()
+
+	def viewStats(self):
 		self.cursor.execute('SELECT * FROM karakterler')
 		row = self.cursor.fetchone()
 
@@ -20,16 +22,6 @@ class sProfile:
 		self.power = row[4]
 		self.charisma = row[5]
 		self.dex = row[6]
-
-		self.cursor.execute('SELECT * FROM lvl')
-		lrow = self.cursor.fetchone()
-		self.lvl = lrow[1]
-
-		self.cursor.execute('SELECT * FROM gain')
-		erow = self.cursor.fetchone()
-		self.exp = erow[1]
-
-	def viewStats(self):
 		print "HP:", self.hp
 		print "INT:", self.intel
 		print "STR:", self.power
@@ -37,16 +29,20 @@ class sProfile:
 		print "DEX:", self.dex
 
 	def viewLevel(self):
+		self.cursor.execute('SELECT * FROM lvl')
+		lrow = self.cursor.fetchone()
+		self.lvl = lrow[1]
 		print "LEVEL:", self.lvl
 
 	def viewExp(self):
+		self.cursor.execute('SELECT * FROM gain')
+		erow = self.cursor.fetchone()
+		self.exp = erow[1]
 		print "EXPERIENCE:", self.exp
 
 	def viewStash(self):
 		self.cursor.execute('SELECT * FROM stash')
 		print self.cursor.fetchall()
-
-
 
 sProfile = sProfile()
 
