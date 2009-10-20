@@ -14,6 +14,7 @@ class market:
 		self.connection = sqlite.connect('test.db')
 		memoryConnection = sqlite.connect(':memory:')
 		self.cursor = self.connection.cursor()
+
 	def welcomeToMarket(self):
 		print "Greetings your hero. This is our town's market. You can sell and buy goods here. We dont have much items,"
 		print "you know these is hard times we have because of war. But in the future, ofcourse with your help we can make"
@@ -44,7 +45,11 @@ class market:
 			print "Item:", row[1]
 			print "You have:", row[2]
 
-	def sellYourItems():
+	def sellYourItems(self):
+		self.cursor.execute('SELECT * FROM stash')
+		row = self.cursor.fetchone()
+		for row in self.cursor
+			
 		return welcomeToMarket()
 
 	def viewMarket():
