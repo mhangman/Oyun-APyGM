@@ -39,17 +39,13 @@ class market:
 			sys.exit()
 
 	def viewItems(self):	
-		self.cursor.execute('SELECT * FROM stash')
+		self.cursor.execute('SELECT * FROM stash WHERE number > 0')
 		row = self.cursor.fetchone()
 		for row in self.cursor:
 			print "Item:", row[1]
 			print "You have:", row[2]
 
 	def sellYourItems(self):
-		self.cursor.execute('SELECT * FROM stash')
-		row = self.cursor.fetchone()
-		for row in self.cursor
-			
 		return welcomeToMarket()
 
 	def viewMarket():
