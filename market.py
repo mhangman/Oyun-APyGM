@@ -9,6 +9,8 @@ import sys
 #well this file will include our market's functions. first of all at the market we should have a list of item prices
 #second we should have items and list of their cost. normally i could prefer to save this data at db. but donno we will try
 #lets first save it on a list or dictionary than we can transfer this values to db if it become nessecary.
+item_prices = {"wolfblood":30, "crowfeather":10, "spoison":40, "tfur":70, "bfur":70, "gdust":1, "fang":90, "vdust":100, "soulgem":1000} 
+
 class market:
 	def __init__(self):
 		self.connection = sqlite.connect('test.db')
@@ -44,9 +46,16 @@ class market:
 		for row in self.cursor:
 			print "Item:", row[1]
 			print "You have:", row[2]
-
+	
+""" sellyouritems function needs yo update items numbers to 0 and gold table to items have to finish it later """
 	def sellYourItems(self):
-		return welcomeToMarket()
+		self.cursor.execute('SELECT * FROM stash WHERE number > 0')
+		row = self.cursor.fetchone()
+		for row in self.cursor:
+			price = item_prices[row[1]]
+			total_income = price * int(row[2])
+			print "You sold all of your %s" %row[1]
+			print "you gained %s gold" %total_income
 
 	def viewMarket():
 		return welcomeTomarket()
