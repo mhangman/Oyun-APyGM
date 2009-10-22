@@ -47,13 +47,17 @@ class market:
 			print "Item:", row[1]
 			print "You have:", row[2]
 	
-""" sellyouritems function needs yo update items numbers to 0 and gold table to items have to finish it later """
 	def sellYourItems(self):
 		self.cursor.execute('SELECT * FROM stash WHERE number > 0')
 		row = self.cursor.fetchone()
 		for row in self.cursor:
 			price = item_prices[row[1]]
 			total_income = price * int(row[2])
+			self.cursor.execute('SELECT * FROM gold')
+			bow = cursor.fetchone()
+			gold = bow[1] + total_income
+			self.cursor.execute('UPDATE gold SET golhave=?', (gold))
+			self.connection.commit()
 			print "You sold all of your %s" %row[1]
 			print "you gained %s gold" %total_income
 

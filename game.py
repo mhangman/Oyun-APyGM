@@ -33,6 +33,7 @@ except:
   cursor.execute('CREATE TABLE gain (id INTEGER PRIMARY KEY, exp INTEGER)')
   cursor.execute('CREATE TABLE lvl (id INTEGER PRIMARY KEY, number INTEGER)')
   cursor.execute('CREATE TABLE stash (id INTEGER PRIMARY KEY, name VARCHAR(30), number INTEGER)')
+  cursor.execute('CREATE TABLE gold (id INTEGER PRIMARY KEY, goldhave INTEGER)')
 
   heroname = raw_input("Your name: ")
   hp = raw_input("Your HP: ")
@@ -45,6 +46,7 @@ except:
   cursor.execute('INSERT INTO karakterler VALUES (null, ?, ?, ?, ?, ?, ?)', (heroname, hp, intel, power, charisma, dex))
   cursor.execute('INSERT INTO gain VALUES (null, 1)')
   cursor.execute('INSERT INTO lvl VALUES (null, 1)')
+  cursor.execute('INSERT INTO gold VALUES (null, 0)')
   connection.commit()
 
 game_basic.run()
