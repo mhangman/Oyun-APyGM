@@ -5,6 +5,7 @@
 import pyglet
 
 window = pyglet.window.Window(800*600, caption='APyGM')
+creator = pyglet.resource.image('images/pyglet.png')
 
 label = pyglet.text.Label('Hello world',
                           font_name='Times New Roman',
@@ -20,5 +21,6 @@ def on_key_press(symbol, modifiers):
 def on_draw():
     window.clear()
     label.draw()
-
+    creator.blit(0,0)
+    
 pyglet.app.run()    
