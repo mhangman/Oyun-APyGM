@@ -1,7 +1,7 @@
 #!usr/bin/env python
 
 #ok here we started to work with pyglet. this file will be main game file and
-#will replaced with game.py
+#will replaced with game.py.
 import pyglet
 
 window = pyglet.window.Window(800*600, caption='APyGM')
