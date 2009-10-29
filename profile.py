@@ -43,6 +43,7 @@ class sProfile:
 	def viewStash(self):
 		self.cursor.execute('SELECT * FROM stash')
 		print self.cursor.fetchall()
+#going to add armors here, player going to choose to wear them from profile windows
 
 sProfile = sProfile()
 

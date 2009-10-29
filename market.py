@@ -10,7 +10,12 @@ import sys
 #second we should have items and list of their cost. normally i could prefer to save this data at db. but donno we will try
 #lets first save it on a list or dictionary than we can transfer this values to db if it become nessecary.
 item_prices = {"wolfblood":30, "crowfeather":10, "spoison":40, "tfur":70, "bfur":70, "gdust":1, "fang":90, "vdust":100, "soulgem":1000} 
+helmets = {"dragon_helmet":1000, "leather_cap":50}
+armors = {"plate_armor":1000, "leather_armor":100}
+shields = {"iron_shield":500, "wood_shield":100}
 
+#item clases will continue like this but we have to add their stat points to a db. than take these values and add them to
+#the battle mechanics.
 class market:
 	def __init__(self):
 		self.connection = sqlite.connect('test.db')
