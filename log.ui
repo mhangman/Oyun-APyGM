@@ -1,0 +1,239 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>279</width>
+    <height>235</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>APyGM</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QLineEdit" name="lineEdit" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_2" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>80</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_5" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>140</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_6" >
+    <property name="geometry" >
+     <rect>
+      <x>120</x>
+      <y>120</y>
+      <width>113</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>241</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Welcome to APyGM please enter your stats:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Your name:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Hitpoint:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>46</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Power:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>46</width>
+      <height>14</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Dex:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Charisma:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>How smart you are? :</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton" >
+    <property name="geometry" >
+     <rect>
+      <x>140</x>
+      <y>170</y>
+      <width>75</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Done</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>279</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu" >
+    <property name="title" >
+     <string>Menu</string>
+    </property>
+    <addaction name="actionAbout" />
+    <addaction name="actionHelp" />
+    <addaction name="actionExit" />
+   </widget>
+   <addaction name="menuMenu" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionHelp" >
+   <property name="text" >
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>158</x>
+     <y>200</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>107</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>signal1()</signal>
+ </slots>
+</ui>
